@@ -39,7 +39,7 @@ if (true) //Start scheduler service, maybe based on a configuration value (only 
         scheduler.OnWorker("TestJob3-Worker");//This will assign a dedicated thread for running the below job (TestJob3), it is helpful when running job on a web app to let the main app threads keep working their ways and not affect on them
 
         scheduler.Schedule<TestJob3>()
-        .Cron("0 3 * * 0") //this cron can be configurable and comes from appsettings or env variable ["0 3 * * 0" indicates that this job will run at 03:00 am on every 0 day of every week (on every sunday)]
+        .Cron("0 3 * * 0") //this cron can be configurable and comes from configurations. ["0 3 * * 0" indicates that this job will run at 03:00 on every 0th day of every week (on every sunday)]
         .PreventOverlapping(Guid.NewGuid().ToString()); //it can also prevent overlapping if a job runs in short schedules and might took times to complete sometimes
 
     });
