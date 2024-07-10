@@ -1,6 +1,9 @@
-﻿namespace JobSchedulingSample.Jobs
+﻿using Coravel.Invocable;
+
+namespace JobSchedulingSample.Jobs
 {
-    public class TestJob2
+    public class TestJob2 : IInvocable
+    {
     {
         public TestJob2()
         {
