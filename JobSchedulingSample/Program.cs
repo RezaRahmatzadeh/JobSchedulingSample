@@ -40,6 +40,7 @@ if (true) //Start scheduler service, maybe based on a configuration value (only 
 
         scheduler.Schedule<TestJob3>()
         .Cron("0 3 * * 0") //this cron can be configurable and comes from configurations. ["0 3 * * 0" indicates that this job will run at 03:00 on every 0th day of every week (on every sunday)]
+        .Zoned(TimeZoneInfo.Local) //specifying time zone
         .PreventOverlapping(Guid.NewGuid().ToString()); //it can also prevent overlapping if a job runs in short schedules and might took times to complete sometimes
 
     });
