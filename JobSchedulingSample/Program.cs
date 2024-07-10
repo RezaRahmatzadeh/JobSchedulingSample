@@ -34,8 +34,10 @@ app.Services.UseScheduler(scheduler =>
 
     scheduler.Schedule<TestJob1>().DailyAt(3, 30); //this numbers can be configurable and comes from appsettings or env variable
 
-    scheduler.Schedule<TestJob1>().Cron("0 3 * * 0"); //this cron can be configurable and comes from appsettings or env variable
-    //this cron 0 3 * * 0 indicate that this job will run at 03:00 am on every 0 day of every week (on every sunday)
+    scheduler.Schedule<TestJob1>()
+    .Cron("0 3 * * 0") //this cron can be configurable and comes from appsettings or env variable ["0 3 * * 0" indicates that this job will run at 03:00 am on every 0 day of every week (on every sunday)]
+    .PreventOverlapping(Guid.NewGuid().ToString()); //it can also prevent overlapping if a job runs in short schedules and might took times to complete sometimes
+    
 });
 
 app.Run();
